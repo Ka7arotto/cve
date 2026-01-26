@@ -1,2 +1,3 @@
 # CVE List
-Some vulnerabilities that have already applied for a CVE
+
+These vulnerabilities have already applied for a CVE found by goku, mekrina, FHK_KMD6377.
