@@ -1,11 +1,9 @@
 # Security Vulnerability Report: Prompt Injection Leads to Potential RCE
 
-
 ## Affected Scope
 
-- Component: **legacy** interaction link of `vanna` (`src/vanna/legacy`)
-- Version: <=2.0.1
-
+-   Component: **legacy** interaction link of `vanna` (`src/vanna/legacy`)
+-   Version: <=2.0.1
 
 ## Vulnerability Description
 
@@ -13,13 +11,11 @@ In the path `visualize=True`, the system requests LLM to generate Plotly visuali
 
 Because **user input is controllable**, and LLM output is also affected by prompt injection, attackers can construct malicious prompts to induce the model to insert arbitrary Python statements (e.g., importing `os`/`subprocess` and executing system commands) into the "Plotly code". If this code is executed by `exec()`, it could result in **arbitrary command execution (RCE)** on the host machine.
 
-
-
 **Untrusted User Input** → LLM generates Plotly Python code → `exec()` executes → **Potential RCE**
 
 ## Reproduction (PoC)
 
-```python
+````python
 from __future__ import annotations
 
 import os
@@ -150,16 +146,18 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
-```
+````
+
 ## Security Impact
 
 Once triggered and successfully executed, an attacker could:
 
-- Execute arbitrary system commands (RCE) to control the server
+-   Execute arbitrary system commands (RCE) to control the server
 
-- Read local files and environment variables (e.g., API keys, database credentials)
+-   Read local files and environment variables (e.g., API keys, database credentials)
 
-- Transfer data out of the network or perform further lateral movement if network privileges are available
+-   Transfer data out of the network or perform further lateral movement if network privileges are available
 
 ## Suggestion
-If  execution is necessary: ​​Execute within an isolated container/sandbox: Minimal privileges, read-only file system, disable network access, restrict system calls.
+
+If execution is necessary: ​​Execute within an isolated container/sandbox: Minimal privileges, read-only file system, disable network access, restrict system calls.
