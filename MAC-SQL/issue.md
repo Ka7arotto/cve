@@ -1,9 +1,11 @@
 # Security Vulnerability Report: Prompt Injection Leading to Arbitrary SQL Execution and Denial of Service in MAC-SQL
 
 ## Affected Scope
+
 The latest version of [MAC-SQL](https://github.com/wbbeyourself/MAC-SQL)
 
 ## Vulnerability Description
+
 MAC-SQL is a multi-agent collaborative Text-to-SQL framework that utilizes large language models (LLMs) to convert natural language queries into SQL statements. The system processes user input through three agents (Selector, Decomposer, and Refiner) and executes the generated SQL against SQLite databases without proper validation or sanitization.
 
 The vulnerability exists in the complete trust chain between user input, LLM output, and SQL execution. Malicious users can exploit this through prompt injection attacks, manipulating the LLM to generate arbitrary SQL statements that are then executed directly on the database server. The core issue is located in the Refiner agent's `_execute_sql` method (core/agents.py:672-698), which executes LLM-generated SQL without any filtering:
@@ -14,7 +16,7 @@ While a 120-second timeout is implemented, it is totally enough for crashing the
 
 The following proof-of-concept demonstrates how prompt injection can bypass the system's intended behavior and execute malicious SQL:
 
-```python
+````python
 from core.chat_manager import ChatManager
 from core.const import SYSTEM_NAME
 
@@ -53,7 +55,7 @@ user_message = {
 }
 
 chat_manager.start(user_message)
-```
+````
 
 This POC uses a recursive Common Table Expression (CTE) that creates an infinite loop, causing the SQLite engine to consume excessive CPU and memory resources, ultimately leading to a denial of service condition and potential server crash.
 
@@ -81,9 +83,10 @@ start (core\chat_manager.py:58)
 This vulnerability allows attackers to execute resource-intensive SQL queries like recursive CTEs that exhaust server CPU, memory, and I/O resources, causing service disruption or complete server crash.
 
 The vulnerability is particularly severe because:
-- There is no whitelist or validation of SQL statement types
-- The LLM's output is implicitly trusted
-- No sanitization occurs between generation and execution
+
+-   There is no whitelist or validation of SQL statement types
+-   The LLM's output is implicitly trusted
+-   No sanitization occurs between generation and execution
 
 ## Suggestion
 
