@@ -1,7 +1,7 @@
 # Security Vulnerability Report: Prompt Injection Leading to SQL-Based Denial of Service in latest Langchain-Chatchat
 
 ## Affected Scope
-The latest version of Langchain-Chatchat
+The latest version of Langchain-Chatchat <=0.3.1
 
 ## Vulnerability Description
 
