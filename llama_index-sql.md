@@ -4,6 +4,7 @@
 
 The `NLSQLTableQueryEngine` component in LlamaIndex contains a SQL injection vulnerability. Attackers can bypass LLM processing logic by crafting specially designed natural language inputs to directly execute arbitrary SQL statements, leading to database data leakage, tampering, and under certain conditions, remote code execution.
 
+<=0.14.13
 ## Vulnerable Function
 
 **File Location**:

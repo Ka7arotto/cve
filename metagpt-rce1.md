@@ -5,7 +5,7 @@
 Project: geekan/MetaGPT
 Component: metagpt.ext.aflow.scripts.operator.Programmer
 Severity: High (Can remotely execute arbitrary system commands)
-
+version: <=0.8.1
 The vulnerable component is located in `metagpt/ext/aflow/scripts/operator.py`. The `Programmer` class is used to pass user-controlled natural language questions to the `code_generate` method for LLM to generate code. The `sanitize` method checks and filters the AST structure of the code, and the `run_code` method implements security restrictions on the import of libraries such as command execution and sets global variables to null. Finally, execution is achieved through `exec(code, global_namespace)` in `run_code`. However, attackers can generate bypassable malicious Python code through carefully crafted prompt control, thereby remotely running arbitrary commands on the host machine.
 
 ## Proof of Concept

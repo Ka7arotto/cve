@@ -8,6 +8,7 @@ A Remote Code Execution (RCE) vulnerability exists in the MetaGPT framework's Da
 
 **Affected Component:** `metagpt.roles.di.data_interpreter.DataInterpreter`
 
+Version : <=0.8.1
 **Vulnerable Files:**
 
 ### 1. Injection Point
