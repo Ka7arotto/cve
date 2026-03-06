@@ -1,8 +1,12 @@
 # Remote Code Execution in bagofwords
 
-## Affected Scope
+**Affected Scope**
 
 <=0.0.297
+
+**Vendor:** https://bagofwords.com/
+
+**Software:** https://github.com/bagofwords1/bagofwords
 
 ## Vulnerability Description
 
