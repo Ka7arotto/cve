@@ -2,7 +2,7 @@
 
 ### DB-GPT version
 
-<=v0.3.7
+<=0.7.5
 
 ### Description
 
