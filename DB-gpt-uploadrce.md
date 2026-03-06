@@ -1,5 +1,9 @@
 # Remote code execution vulnerability that bypasses code checks
 
+**Vendor:** eosphoros-ai:http://docs.dbgpt.cn/docs/overview
+
+**Software:** https://github.com/eosphoros-ai/DB-GPT
+
 ### DB-GPT version
 
 <=0.7.5

