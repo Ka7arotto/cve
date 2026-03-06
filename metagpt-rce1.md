@@ -1,4 +1,4 @@
-# 漏洞报告： The Programmer component contains a remote code execution vulnerability that can bypass security checks.
+# The Programmer component contains a remote code execution vulnerability that can bypass security checks.
 
 **Vendor:** https://docs.deepwisdom.ai/main/en/
 
