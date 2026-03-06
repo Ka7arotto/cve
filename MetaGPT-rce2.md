@@ -1,5 +1,11 @@
 # RCE via Prompt Injection in DataInterpreter
 
+version: <=0.8.1
+
+**Vendor:** https://docs.deepwisdom.ai/main/en/
+
+**Software:** https://github.com/FoundationAgents/MetaGPT
+
 ## Summary
 
 A Remote Code Execution (RCE) vulnerability exists in the MetaGPT framework's DataInterpreter component due to insufficient input validation on user-provided prompts. An attacker can use prompt injection to manipulate the LLM into generating malicious Python code, which is then automatically executed in a Jupyter Notebook environment without any sandbox restrictions or security checks.
