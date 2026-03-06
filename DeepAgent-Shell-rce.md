@@ -1,9 +1,8 @@
-#  Remote Code Execution (RCE)
+# Remote Code Execution in Aix-DB
 
-**Severity**: 🔴 **Critical**
-**CVSS Score**: 9.8 (Critical)
-**OWASP Classification**: A03:2021 - Injection
-**Date Discovered**: 2025-02-14
+**Vendor:** http://www.aixhub.top/
+**Software:** https://github.com/apconw/Aix-DB
+
 **Affected Version**: v1.2.3
 
 ---
@@ -114,8 +113,8 @@ An attacker only needs to instruct the Agent using natural language in the chat 
 
 ### 3.1 Prerequisites
 
-- An account with access to the "Deep Research" feature
-- At least one datasource configured in the system
+-   An account with access to the "Deep Research" feature
+-   At least one datasource configured in the system
 
 ### 3.2 Attack Examples
 
@@ -130,10 +129,10 @@ what is  in config
 **Agent Response**:
 
 ```
-__init__.py 
-__pycache__/ 
-load_env.py 
-logging.conf 
+__init__.py
+__pycache__/
+load_env.py
+logging.conf
 ```
 
 The Agent successfully called the `ls` tool to list the config directory contents on the server, exposing internal project structure.
@@ -203,12 +202,12 @@ uid=0(root) gid=0(root) groups=0(root)%
 
 ### 3.3 Impact
 
-- **Arbitrary File Read**: Read `/etc/passwd`, `.env`, database credentials, and other sensitive files
-- **Arbitrary File Write**: Write webshells, crontab entries, SSH public keys, etc.
-- **Arbitrary Command Execution**: Execute system commands through the LLM agent tool chain
-- **Information Disclosure**: Full exposure of project source code, environment variables, secrets
-- **Reverse Shell**: Plant reverse shell scripts via file write capability
-- **Lateral Movement**: Leverage server access to pivot into internal network systems
+-   **Arbitrary File Read**: Read `/etc/passwd`, `.env`, database credentials, and other sensitive files
+-   **Arbitrary File Write**: Write webshells, crontab entries, SSH public keys, etc.
+-   **Arbitrary Command Execution**: Execute system commands through the LLM agent tool chain
+-   **Information Disclosure**: Full exposure of project source code, environment variables, secrets
+-   **Reverse Shell**: Plant reverse shell scripts via file write capability
+-   **Lateral Movement**: Leverage server access to pivot into internal network systems
 
 ---
 
@@ -281,4 +280,3 @@ stream_iter = agent.astream(
 ```
 
 User natural language input is passed directly as instructions to the LLM Agent, which autonomously decides which tools to invoke. There is no intermediate layer to filter or restrict user intent.
-

