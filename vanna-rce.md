@@ -1,9 +1,13 @@
 # Security Vulnerability Report: Prompt Injection Leads to Potential RCE
 
+**Vendor:** https://vanna.ai/
+
+**Software:** https://github.com/vanna-ai/vanna
+
 ## Affected Scope
 
 -   Component: **legacy** interaction link of `vanna` (`src/vanna/legacy`)
--   Version: <=2.0.1
+-   Version: <=2.0.2
 
 ## Vulnerability Description
 
