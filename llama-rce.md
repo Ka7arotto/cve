@@ -1,4 +1,9 @@
-# prompt2rce
+# prompt to rce vulnerability
+
+version :<=0.14.13
+**Vendor:** https://www.llamaindex.ai/about
+
+**Software:** https://github.com/run-llama/llama_index
 
 Several components, including PandasQueryEngine, contain remote code execution vulnerabilities that can bypass security checks.
 
@@ -140,8 +145,8 @@ In addition to the PandasQueryEngine component, the PolarsQueryEngine component 
 
 Requires installation of script dependencies
 
--   pip install llama_index
--   pip install llama-index-experimental
+- pip install llama_index
+- pip install llama-index-experimental
 
 ## Repair methods
 
