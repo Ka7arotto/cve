@@ -3,6 +3,10 @@
 ## Affected Scope
 
 <=0.2.1
+**Vendor:** https://zhongyu09.github.io/openchatbi/
+
+**Software:** https://github.com/zhongyu09/openchatbi
+version: <=0.8.1
 
 ## Vulnerability Description
 
