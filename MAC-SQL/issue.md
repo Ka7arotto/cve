@@ -4,6 +4,9 @@
 
 The latest version of [MAC-SQL](https://github.com/wbbeyourself/MAC-SQL)
 
+**Software:** https://github.com/wbbeyourself/MAC-SQL
+version: <=0.8.1
+
 ## Vulnerability Description
 
 MAC-SQL is a multi-agent collaborative Text-to-SQL framework that utilizes large language models (LLMs) to convert natural language queries into SQL statements. The system processes user input through three agents (Selector, Decomposer, and Refiner) and executes the generated SQL against SQLite databases without proper validation or sanitization.
@@ -84,9 +87,9 @@ This vulnerability allows attackers to execute resource-intensive SQL queries li
 
 The vulnerability is particularly severe because:
 
--   There is no whitelist or validation of SQL statement types
--   The LLM's output is implicitly trusted
--   No sanitization occurs between generation and execution
+- There is no whitelist or validation of SQL statement types
+- The LLM's output is implicitly trusted
+- No sanitization occurs between generation and execution
 
 ## Suggestion
 
