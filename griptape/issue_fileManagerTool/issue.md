@@ -2,6 +2,8 @@
 
 ## Affected Scope
 griptape <= 1.9.0
+**Vendor:** https://www.griptape.ai/
+**Software:** https://github.com/griptape-ai/griptape
 
 ## Vulnerability Description
 The `FileManagerTool` (backed by `LocalFileManagerDriver`) in Griptape provides capabilities to list, read, and write files. However, it fails to properly sanitize file paths provided by the LLM. It directly concatenates the llm-supplied path with the working directory.
