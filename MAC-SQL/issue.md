@@ -5,7 +5,6 @@
 The latest version of [MAC-SQL](https://github.com/wbbeyourself/MAC-SQL)
 
 **Software:** https://github.com/wbbeyourself/MAC-SQL
-version: <=0.8.1
 
 ## Vulnerability Description
 
