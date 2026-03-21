@@ -1,7 +1,7 @@
 # Security Vulnerability Report: Arbitrary File Write via Path Traversal in ComputerTool
 
 ## Affected Scope
-griptape <= 1.9.0
+griptape <= 1.9.4
 **Vendor:** https://www.griptape.ai/
 **Software:** https://github.com/griptape-ai/griptape
 

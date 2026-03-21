@@ -1,14 +1,17 @@
 # Security Vulnerability Report: Path Traversal in FileManagerTool
 
 ## Affected Scope
-griptape <= 1.9.0
+
+griptape <= 1.9.4
 **Vendor:** https://www.griptape.ai/
 **Software:** https://github.com/griptape-ai/griptape
 
 ## Vulnerability Description
+
 The `FileManagerTool` (backed by `LocalFileManagerDriver`) in Griptape provides capabilities to list, read, and write files. However, it fails to properly sanitize file paths provided by the LLM. It directly concatenates the llm-supplied path with the working directory.
 
 This allows for a path traversal vulnerability. An attacker can use prompt injection to coerce the LLM into providing paths containing `../` sequences. This enables the agent to:
+
 1.  **Read arbitrary files** (e.g., `/etc/passwd`) via `load_files_from_disk`.
 2.  **List arbitrary directories** via `list_files_from_disk`.
 3.  **Write to arbitrary files** via `save_content_to_file` or `save_memory_artifacts_to_disk`.
@@ -63,8 +66,8 @@ The agent outputs the content of `/etc/passwd`.
 list file of root directory
 ![alt text](images/issue/image.png)
 
-
 ## Gadget
+
 take arbitrary file read as an example
 
 ```
@@ -78,11 +81,14 @@ run_action (griptape\tasks\actions_subtask.py:148)
 ```
 
 ## Security Impact
+
 This vulnerability allows full read/write access to the host filesystem with the privileges of the user running the Griptape agent.
+
 1.  **Information Disclosure**: Attackers can read sensitive files (SSH keys, credentials, configuration files).
 2.  **Remote Code Execution (RCE)**: Attackers can write to sensitive files (e.g., `~/.bashrc`, `__init__.py`) to gain code execution.
 3.  **System Compromise**: Attackers can modify system configurations or delete critical files.
 
 ## Suggestion
+
 1.  **Path Sanitization**: Use `os.path.basename()` to strip directory components from filenames if only flat directory access is intended.
 2.  **Path Validation**: Resolve the absolute path using `os.path.abspath()` and verify that it starts with the intended `workdir` (e.g., using `os.path.commonpath` or `path.startswith`).
