@@ -1,6 +1,12 @@
 # RCE via Unsafe `eval()` in `BaseLineFollowupWorker`
 
+**Vendor:** https://docs.prem.io/developer-resources/get-started/introduction
+
+**Software:** https://github.com/premAI-io/premsql
+version: <=0.2.1
+
 ## Summary (摘要)
+
 A Remote Code Execution (RCE) vulnerability exists in the `premsql` library due to the unsafe usage of `eval()` on language model outputs. An attacker can use prompt injection to force the LLM to output malicious Python code, which is then executed by the server.
 
 `premsql` 库中存在一个远程代码执行 (RCE) 漏洞，原因是直接对语言模型的输出使用了不安全的 `eval()` 函数。攻击者可以通过提示注入 (Prompt Injection) 诱导 LLM 输出恶意的 Python 代码，从而在服务器上执行该代码。
@@ -70,8 +76,6 @@ agent_server = AgentServer(agent=agent, port=1111)
 agent_server.launch()
 ```
 
-
-
 ```bash
 python exp/start.py
 ```
@@ -112,11 +116,11 @@ import json
                 max_new_tokens=max_new_tokens,
                 postprocess=False,
             )
-            
+
             # Use json.loads instead of eval
             # You may need to ensure the model outputs valid JSON, possibly using a JSON repair tool if needed
             result = json.loads(result_str)
-            
+
             error_from_model = None
             assert "alternate_decision" in result
             assert "suggestion" in result
